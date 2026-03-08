@@ -347,7 +347,7 @@ setInterval(() => {
 // ===== FORCE CHECK BUTTON CONTINUOUSLY =====
 setInterval(() => {
     const btn = document.querySelector("#countdownBtn");
-    if (btn) {
+    if (btn && typeof checkButton === "function") {
         checkButton();
     }
 }, 800);
