@@ -209,7 +209,7 @@ function startAutoScroll() {
 
     autoScrollInterval = setInterval(() => {
 
-        const btn = document.querySelector("#countdownBtn");
+        const btn = findContinueButton();
 
         // Nếu đã thấy nút -> dừng scroll
         if (btn) {
@@ -232,12 +232,38 @@ function startAutoScroll() {
 
     }, 700);
 }
+
+        
         // ================= BUTTON LOGIC (GIỮ NGUYÊN) =================
 startAutoScroll();
+        function findContinueButton(){
+
+    const buttons = document.querySelectorAll("button,a");
+
+    for(const btn of buttons){
+
+        const text = btn.innerText
+        .replace(/\s+/g," ")
+        .trim()
+        .toUpperCase();
+
+        if(
+            text.includes("NHẤN ĐỂ TIẾP TỤC") ||
+            text.includes("LẤY MÃ") ||
+            text.includes("LINK GỐC") ||
+            text.includes("GET LINK")
+        ){
+            return btn;
+        }
+
+    }
+
+    return null;
+}
         function checkButton() {
 
-            const btn = document.querySelector("#countdownBtn");
-            if (!btn) return;
+              const btn = findContinueButton();
+    if (!btn) return;
 
             const text = btn.textContent
                 .replace(/\s+/g, " ")
@@ -345,12 +371,23 @@ setInterval(() => {
 }, 5000);
     // ================= LOAD CONFIG =================
 // ===== FORCE CHECK BUTTON CONTINUOUSLY =====
+// ===== FORCE CHECK BUTTON CONTINUOUSLY =====
 setInterval(() => {
-    const btn = document.querySelector("#countdownBtn");
+
+    const btn = findContinueButton();
+
     if (btn) {
-        checkButton();
+
+        console.log("✅ Đã tìm thấy nút:", btn.innerText);
+
+        btn.dispatchEvent(new MouseEvent("mouseover",{bubbles:true}));
+        btn.dispatchEvent(new MouseEvent("mousedown",{bubbles:true}));
+        btn.dispatchEvent(new MouseEvent("mouseup",{bubbles:true}));
+        btn.dispatchEvent(new MouseEvent("click",{bubbles:true}));
+
     }
-}, 800);
+
+}, 1000);
     GM_xmlhttpRequest({
         method: "GET",
         url: CONFIG_URL + "?t=" + Date.now(),
