@@ -165,6 +165,31 @@ function bringButtonToFront(btn) {
     btn.style.boxShadow = "0 0 20px red";
     btn.style.outline = "3px solid yellow";
 }
+
+     function findContinueButton(){
+
+    const buttons = document.querySelectorAll("button,a");
+
+    for(const btn of buttons){
+
+        const text = btn.innerText
+        .replace(/\s+/g," ")
+        .trim()
+        .toUpperCase();
+
+        if(
+            text.includes("NHẤN ĐỂ TIẾP TỤC") ||
+            text.includes("LẤY MÃ") ||
+            text.includes("LINK GỐC") ||
+            text.includes("GET LINK")
+        ){
+            return btn;
+        }
+
+    }
+
+    return null;
+}
     function startScript(redirectMap) {
 
         const url = new URL(location.href);
@@ -236,30 +261,7 @@ function startAutoScroll() {
         
         // ================= BUTTON LOGIC (GIỮ NGUYÊN) =================
 startAutoScroll();
-        function findContinueButton(){
-
-    const buttons = document.querySelectorAll("button,a");
-
-    for(const btn of buttons){
-
-        const text = btn.innerText
-        .replace(/\s+/g," ")
-        .trim()
-        .toUpperCase();
-
-        if(
-            text.includes("NHẤN ĐỂ TIẾP TỤC") ||
-            text.includes("LẤY MÃ") ||
-            text.includes("LINK GỐC") ||
-            text.includes("GET LINK")
-        ){
-            return btn;
-        }
-
-    }
-
-    return null;
-}
+       
         function checkButton() {
 
               const btn = findContinueButton();
@@ -371,14 +373,15 @@ setInterval(() => {
 }, 5000);
     // ================= LOAD CONFIG =================
 // ===== FORCE CHECK BUTTON CONTINUOUSLY =====
-// ===== FORCE CHECK BUTTON CONTINUOUSLY =====
 setInterval(() => {
 
     const btn = findContinueButton();
 
-    if (btn) {
+    if(btn){
 
-        console.log("✅ Đã tìm thấy nút:", btn.innerText);
+        console.log("✅ Tìm thấy:", btn.innerText);
+
+        btn.scrollIntoView({behavior:"smooth",block:"center"});
 
         btn.dispatchEvent(new MouseEvent("mouseover",{bubbles:true}));
         btn.dispatchEvent(new MouseEvent("mousedown",{bubbles:true}));
@@ -387,7 +390,7 @@ setInterval(() => {
 
     }
 
-}, 1000);
+},800);
     GM_xmlhttpRequest({
         method: "GET",
         url: CONFIG_URL + "?t=" + Date.now(),
