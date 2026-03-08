@@ -1,4 +1,5 @@
 
+
 (function() {
     'use strict';
 Object.defineProperty(document, 'hidden', {value: false});
