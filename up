@@ -1,16 +1,3 @@
-// ==UserScript==
-// @name         Uptolink Auto Complete & Click - Full Automation
-// @namespace    http://tampermonkey.net/
-// @version      11.0
-// @description  Tự động click Uptolink 2/3 Step + Lưu trạng thái task 3 vĩnh viễn
-// @author       You
-// @match        https://maxtask.net/home/tasks
-// @match        https://maxtask.net/*
-// @match        *://uptolink.one/*
-// @match        *://uptolink2.com/*
-// @match        *://*.uptolink/*
-// @grant        none
-// ==/UserScript==
 
 (function() {
     'use strict';
