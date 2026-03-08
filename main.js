@@ -65,7 +65,7 @@ Object.defineProperty(document, 'readyState', {
         e.stopImmediatePropagation();
     }, true);
 
-    unsafeWindow.requestAnimationFrame = (cb) => setTimeout(cb, 16);
+   (window.unsafeWindow || window).requestAnimationFrame = (cb) => setTimeout(cb, 16);
 
     // ========================================================
 
