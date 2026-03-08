@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @match        *://*/*
-
+// @connect      raw.githubusercontent.com
 // @require https://raw.githubusercontent.com/thanhdontcare/chaucsasc/main/main.js
 // @require https://raw.githubusercontent.com/thanhdontcare/chaucsasc/main/up.js
 
