@@ -1,14 +1,3 @@
-// ==UserScript==
-// @name         Redirect + Smart Hold + Safe Return
-// @namespace    http://tampermonkey.net/
-// @version      5.4
-// @description  Full Fix - Auto click "NHẤN ĐỂ TIẾP TỤC" (Background Always Run)
-// @author       You
-// @match        *://*/*
-// @grant        GM_xmlhttpRequest
-// @grant        unsafeWindow
-// @connect      raw.githubusercontent.com
-// ==/UserScript==
 
 (function () {
     'use strict';
