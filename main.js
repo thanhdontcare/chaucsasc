@@ -51,7 +51,10 @@ setInterval(() => {
     document.body.offsetHeight;
 }, 1000);
 
-
+// Force document readyState luôn complete
+Object.defineProperty(document, 'readyState', {
+    get: () => 'complete'
+});
 
 // ==============================================================
     Object.defineProperty(document, 'hidden', { value: false });
@@ -62,7 +65,7 @@ setInterval(() => {
         e.stopImmediatePropagation();
     }, true);
 
-   (window.unsafeWindow || window).requestAnimationFrame = (cb) => setTimeout(cb, 16);
+    unsafeWindow.requestAnimationFrame = (cb) => setTimeout(cb, 16);
 
     // ========================================================
 
@@ -192,39 +195,6 @@ function bringButtonToFront(btn) {
                 return;
             }
         }
-   function checkButton() {
-
-            const btn = document.querySelector("#countdownBtn");
-            if (!btn) return;
-
-            const text = btn.textContent
-                .replace(/\s+/g, " ")
-                .trim()
-                .toUpperCase();
-
-            if (text.includes("NHẤN LINK BẤT KỲ")) {
-                setTimeout(() => location.reload(), 1000);
-                return;
-            }
-
-            if (text.includes("LẤY MÃ")) {
-                taskStarted = true;
-                realClick(btn);
-                return;
-            }
-
-            if (text.includes("NHẤN ĐỂ TIẾP TỤC")) {
-                taskStarted = true;
-
-                const span = btn.querySelector(".countdown");
-                if (span) {
-                    realClick(span);
-                    return;
-                }
-
-                realClick(btn);
-            }
-        }
 
         const isInRedirectMap = Object.values(redirectMap)
             .some(domain => currentHost.includes(domain));
@@ -264,7 +234,40 @@ function startAutoScroll() {
 }
         // ================= BUTTON LOGIC (GIỮ NGUYÊN) =================
 startAutoScroll();
-     
+        function checkButton() {
+
+            const btn = document.querySelector("#countdownBtn");
+            if (!btn) return;
+
+            const text = btn.textContent
+                .replace(/\s+/g, " ")
+                .trim()
+                .toUpperCase();
+
+            if (text.includes("NHẤN LINK BẤT KỲ")) {
+                setTimeout(() => location.reload(), 1000);
+                return;
+            }
+
+            if (text.includes("LẤY MÃ")) {
+                taskStarted = true;
+                realClick(btn);
+                return;
+            }
+
+            if (text.includes("NHẤN ĐỂ TIẾP TỤC")) {
+                taskStarted = true;
+
+                const span = btn.querySelector(".countdown");
+                if (span) {
+                    realClick(span);
+                    return;
+                }
+
+                realClick(btn);
+            }
+        }
+
         // ===== GIỮ NGUYÊN TIMEOUT CŨ =====
         setTimeout(checkButton, 500);
         setTimeout(checkButton, 1000);
@@ -341,7 +344,13 @@ setInterval(() => {
     document.dispatchEvent(new MouseEvent("mousemove", { bubbles: true }));
 }, 5000);
     // ================= LOAD CONFIG =================
-
+// ===== FORCE CHECK BUTTON CONTINUOUSLY =====
+setInterval(() => {
+    const btn = document.querySelector("#countdownBtn");
+    if (btn) {
+        checkButton();
+    }
+}, 800);
     GM_xmlhttpRequest({
         method: "GET",
         url: CONFIG_URL + "?t=" + Date.now(),
