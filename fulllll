@@ -1,0 +1,12 @@
+// ==UserScript==
+// @name         Uptolink Loader
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @match        *://*/*
+
+// @require https://raw.githubusercontent.com/thanhdontcare/chaucsasc/main/main.js
+// @require https://raw.githubusercontent.com/thanhdontcare/chaucsasc/main/up.js
+
+// @grant GM_xmlhttpRequest
+// @grant unsafeWindow
+// ==/UserScript==
