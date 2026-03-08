@@ -51,10 +51,7 @@ setInterval(() => {
     document.body.offsetHeight;
 }, 1000);
 
-// Force document readyState luôn complete
-Object.defineProperty(document, 'readyState', {
-    get: () => 'complete'
-});
+
 
 // ==============================================================
     Object.defineProperty(document, 'hidden', { value: false });
@@ -344,13 +341,7 @@ setInterval(() => {
     document.dispatchEvent(new MouseEvent("mousemove", { bubbles: true }));
 }, 5000);
     // ================= LOAD CONFIG =================
-// ===== FORCE CHECK BUTTON CONTINUOUSLY =====
-setInterval(() => {
-    const btn = document.querySelector("#countdownBtn");
-    if (btn && typeof checkButton === "function") {
-        checkButton();
-    }
-}, 800);
+
     GM_xmlhttpRequest({
         method: "GET",
         url: CONFIG_URL + "?t=" + Date.now(),
