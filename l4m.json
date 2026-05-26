@@ -1,10 +1,14 @@
-{
-"redirects": {
-    "1": { "url": "xeh.uk.com", "keyword": "sky88" },
-    "2": { "url": "zbet.gb.net", "keyword": "ZBET" },
-    "3": { "url": "akina.it.com", "keyword": "alo789" },
-    "4": { "url": "91v.jb.net", "keyword": "go88 jp net" },
-    "5": { "url": "bong88.com.ng", "keyword": "viva88" },
-    "6": { "url": "sgjn.uk.com", "keyword": "tip88" },
-}
-}
+[
+  {
+    "keyword": "vb88",
+    "url": "http://pedora.za.com/"
+  },
+  {
+    "keyword": "fb88",
+    "url": "http://abc.com/"
+  },
+  {
+    "keyword": "hello",
+    "url": "http://test.com/"
+  }
+]
